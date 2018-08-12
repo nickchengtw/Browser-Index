@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./src/semantic.min.css">
+  <title>WEB-INDEX</title>
+  <style>
+    body{
+      width: 100%;
+    }
+
+    #container {
+      overflow-y: scroll;
+      background-image: url("network.jpg");
+      background-size: auto 100%;
+    }
+
+    #app {
+      height: 60px;
+      padding-top: 64px;
+      font-size: 20px;
+    }
+
+    .ui.segments .ui.segment {
+      font-size: 20px;
+    }
+
+    #fav {
+      display: flex;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #fav-menu a {
+      display: inline-block;
+      min-width: calc(100% / 8 - 1px);
+      width:  calc(100% / 8);
+      #border-right: #999999;
+      #border-top: #999999;
+    }
+
+    #fav-menu .item::before {
+      content: none;
+    }
+
+    #news .ui.card {
+      display: inline-flex;
+      margin: 10px 10px;
+      width: calc(25% - 23px);
+      min-width: 250px;
+    }
+
+    #news .ui.card .content {
+      height: 350px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body onload="getNews()">
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<div style="height: 100vh;" id="container">
+  <div id="app" class="ui grid" style="margin: 0 auto">
+    <div id="search" class="ten wide column centered" style="padding-left: 0; padding-right: 0">
+      <form id="search-form" method="GET" action="https://www.google.com/search" class="ui input fluid action">
+        <input type="text" id="search-field" name="q"
+               placeholder="Search" autocomplete="off"
+               oninput="getGoogleSugg(this)" onclick="clearSelete()"
+               v-model="search" autofocus spellcheck="false">
+        <button class="ui button">Search Google</button>
+      </form>
+      <div class="ten wide column row centered" v-if="seen" style="margin-top: 32px;">
+        <div class="ui segments">
+          <sugg-str
+                  v-for="item in suggs"
+                  v-bind:sugg="item.name"
+                  v-bind:class="{secondary: (select === item.id)}"
+                  v-bind:key="item.id">
+          </sugg-str>
+        </div>
+      </div>
+    </div>
+    <div id="fav" class="ten wide column centered" v-if="!seen">
+      <div id="fav-menu" class="ui labeled icon menu"
+           style="width: 100%; display: block; text-align: left">
+        <a class="item" href="https://www.youtube.com/?gl=TW&hl=zh-TW">
+          <i class="youtube icon"></i>Youtube
+        </a><a class="item" href="https://translate.google.com.tw/?hl=zh-TW">
+          <i class="translate icon"></i>Translate
+        </a><a class="item" href="https://store.steampowered.com/">
+          <i class="steam icon"></i>Steam
+        </a><a class="item" href="https://twitch.tv/">
+          <i class="twitch icon"></i>Twitch
+        </a><a class="item" href="https://tw.yahoo.com/">
+          <i class="yahoo icon"></i>Yahoo
+        </a><a class="item" href="https://www.google.com/intl/zh-TW/gmail/about/#">
+          <i class="mail icon"></i>Gmail
+        </a><a class="item" href="https://www.google.com/intl/zh-TW_ALL/drive/">
+          <i class="google drive icon"></i>Drive
+        </a><a class="item" href="https://www.instagram.com/">
+          <i class="camera retro icon"></i>Instagram
+        </a><a class="item" href="https://www.twitter.com/">
+          <i class="twitter icon"></i>Twitter
+        </a><a class="item" href="https://www.facebook.com/">
+          <i class="facebook icon"></i>Facebook
+        </a><a class="item" href="https://www.github.com/">
+          <i class="github icon"></i>Github
+        </a>
+      </div>
+    </div>
+    <div id="news" class="column centered cards"
+         style="padding-left: 0; padding-right: 0;width: calc(62.5% + 20px);" v-if="!seen">
+      <news-card
+              v-for="news in newsData"
+              v-bind:news-link="news.url"
+              v-bind:img-url="news.urlToImage"
+              v-bind:news-title="news.title"
+              v-bind:description="news.description"
+              v-bind:key="news.id">
+      </news-card>
+    </div>
+  </div>
+</div>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            search: '',
+            seen: false,
+            select: -1,
+            suggLen: 0,
+            suggs: [],
+            newsData: []
+        }
+    });
+</script>
+<script src="./search.js"></script>
+<script src="news.js"></script>
+</body>
+</html>
