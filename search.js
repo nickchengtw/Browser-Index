@@ -46,7 +46,9 @@ function autoComplete(data) {
     app.suggLen = data[1].length;
     for (let i = 0; i < data[1].length; i++) {
         suggData[i] = {};
-        suggData[i].name = data[1][i][0].replace(/\u0026#39;/g, "'");
+        suggData[i].name = data[1][i][0]
+            .replace(/\u0026#39;/g, "'")
+            .replace(/&amp;/g, '&');
         suggData[i].id = i;
     }
     app.suggs = suggData;

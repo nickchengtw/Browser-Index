@@ -1,0 +1,67 @@
+
+body{
+    width: 100%;
+}
+
+#container {
+    width: 100%;
+    overflow-y: hidden;
+    background: url("network.jpg") fixed;
+    background-size: auto 100%;
+}
+
+#web {
+    padding-top: 128px;
+    font-size: 20px;
+}
+
+.ui.segments .ui.segment {
+    font-size: 20px;
+}
+
+#fav {
+    display: flex;
+    margin-top: 24px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#fav-menu a {
+    display: inline-block;
+    min-width: calc(100% / 8 - 1px);
+    width:  calc(100% / 8);
+    #border-right: #999999;
+    #border-top: #999999;
+}
+
+#fav-menu .item::before {
+    content: none;
+}
+
+#news {
+    background: url("city.jpg") fixed;
+    background-size: auto 100%;
+    width: auto;
+    height: auto;
+    min-height: 100vh;
+}
+
+#news-box {
+    width: 900px;
+    margin: 0 auto;
+    padding: 36px 0;
+    text-align: center;
+}
+
+#news-box .ui.card {
+    display: inline-flex;
+    margin: 10px 10px;
+    width: calc(25% - 23px);
+    min-width: 250px;
+}
+
+#news-box .ui.card .content {
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}

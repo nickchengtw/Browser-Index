@@ -3,90 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./src/semantic.min.css">
+  <link rel="stylesheet" href="./src/style.css">
   <title>WEB-INDEX</title>
-  <style>
-    body{
-      width: 100%;
-    }
-
-    #container {
-      overflow-y: scroll;
-      background-image: url("network.jpg");
-      background-size: auto 100%;
-    }
-
-    #app {
-      height: 60px;
-      padding-top: 64px;
-      font-size: 20px;
-    }
-
-    .ui.segments .ui.segment {
-      font-size: 20px;
-    }
-
-    #fav {
-      display: flex;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    #fav-menu a {
-      display: inline-block;
-      min-width: calc(100% / 8 - 1px);
-      width:  calc(100% / 8);
-      #border-right: #999999;
-      #border-top: #999999;
-    }
-
-    #fav-menu .item::before {
-      content: none;
-    }
-
-    #news .ui.card {
-      display: inline-flex;
-      margin: 10px 10px;
-      width: calc(25% - 23px);
-      min-width: 250px;
-    }
-
-    #news .ui.card .content {
-      height: 350px;
-      overflow-x: hidden;
-      overflow-y: scroll;
-    }
-  </style>
 </head>
 <body onload="getNews()">
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<div style="height: 100vh;" id="container">
-  <div id="app" class="ui grid" style="margin: 0 auto">
-    <div id="search" class="ten wide column centered" style="padding-left: 0; padding-right: 0">
-      <form id="search-form" method="GET" action="https://www.google.com/search" class="ui input fluid action">
-        <input type="text" id="search-field" name="q"
-               placeholder="Search" autocomplete="off"
-               oninput="getGoogleSugg(this)" onclick="clearSelete()"
-               v-model="search" autofocus spellcheck="false">
-        <button class="ui button">Search Google</button>
-      </form>
-      <div class="ten wide column row centered" v-if="seen" style="margin-top: 32px;">
-        <div class="ui segments">
-          <sugg-str
-                  v-for="item in suggs"
-                  v-bind:sugg="item.name"
-                  v-bind:class="{secondary: (select === item.id)}"
-                  v-bind:key="item.id">
-          </sugg-str>
-        </div>
+<!-- <script src="src.vue.min.js"></script> -->
+<script src="src/vue.min.js"></script>
+<div id="app">
+  <div style="height: 100vh;" id="container">
+    <div id="web" class="ui grid" style="margin: 0 auto;">
+      <div id="search" class="ten wide column centered" style="padding-left: 0; padding-right: 0">
+        <form id="search-form"
+              method="GET"
+              action="https://www.google.com/search"
+              class="ui input fluid action">
+          <input type="text" id="search-field" name="q"
+                 placeholder="Search" autocomplete="off"
+                 oninput="getGoogleSugg(this)" onclick="clearSelete()"
+                 v-model="search" autofocus spellcheck="false">
+          <button class="ui button">Search Google</button>
+        </form>
+        <div class="ten wide column row centered" v-if="seen" style="margin-top: 32px;">
+          <div class="ui segments">
+            <sugg-str
+                    v-for="item in suggs"
+                    v-bind:sugg="item.name"
+                    v-bind:class="{secondary: (select === item.id)}"
+                    v-bind:key="item.id">
+            </sugg-str>
+          </div>
       </div>
-    </div>
-    <div id="fav" class="ten wide column centered" v-if="!seen">
-      <div id="fav-menu" class="ui labeled icon menu"
-           style="width: 100%; display: block; text-align: left">
-        <a class="item" href="https://www.youtube.com/?gl=TW&hl=zh-TW">
-          <i class="youtube icon"></i>Youtube
-        </a><a class="item" href="https://translate.google.com.tw/?hl=zh-TW">
+      <div id="fav" class="ten wide column centered" v-if="!seen">
+        <div id="fav-menu" class="ui labeled icon menu"
+             style="width: 100%; display: block; text-align: left">
+          <a class="item" href="https://www.youtube.com/?gl=TW&hl=zh-TW">
+            <i class="youtube icon"></i>Youtube
+          </a><a class="item" href="https://translate.google.com.tw/?hl=zh-TW">
           <i class="translate icon"></i>Translate
         </a><a class="item" href="https://store.steampowered.com/">
           <i class="steam icon"></i>Steam
@@ -107,10 +59,19 @@
         </a><a class="item" href="https://www.github.com/">
           <i class="github icon"></i>Github
         </a>
+        </div>
+      </div>
       </div>
     </div>
-    <div id="news" class="column centered cards"
-         style="padding-left: 0; padding-right: 0;width: calc(62.5% + 20px);" v-if="!seen">
+  </div>
+  <!-- disabled
+  <div style="text-align: center; padding: 20px 10px; background-color: #DDDDDD">
+    <p style="font-size: 36px; color: #333333; margin-bottom: 24px"><span>NEWS</span></p>
+    <p style="color: #333333; font-size: 20px">Event in the word</p>
+  </div>
+  <div id="news">
+    <div id="news-box" class="column centered cards"
+         style="padding-left: 0; padding-right: 0;" v-if="!seen">
       <news-card
               v-for="news in newsData"
               v-bind:news-link="news.url"
@@ -121,6 +82,7 @@
       </news-card>
     </div>
   </div>
+  -->
 </div>
 <script>
     let app = new Vue({
@@ -136,6 +98,7 @@
     });
 </script>
 <script src="./search.js"></script>
-<script src="news.js"></script>
+<!-- disabled -->
+<!-- <script src="news.js"></script> -->
 </body>
 </html>

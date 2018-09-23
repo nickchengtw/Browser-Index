@@ -21,7 +21,7 @@ function getNews() {
     fetch(req)
         .then(function(response) {
             response.json().then(function (res) {
-                app.newsData = res.articles.slice(0, 4);
+                app.newsData = res.articles.slice(0, 6);
             });
         });
 }
