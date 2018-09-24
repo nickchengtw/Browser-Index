@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+ ---
+ HEAD
+ ---
+  -->
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="./src/semantic.min.css">
-  <link rel="stylesheet" href="./src/uikit.min.css">
+
+  <link rel="stylesheet" href="src/semantic/semantic.min.css">
+  <link rel="stylesheet" href="src/uikit/uikit.min.css">
   <link rel="stylesheet" href="./src/style.css">
+  <link rel="stylesheet" href="src/fa/css/font-awesome.min.css">
+
   <title>WEB-INDEX</title>
+
+  <script src="src/vue/vue.min.js"></script>
+  <!-- <script src="src/vue.js"></script> -->
+
+  <!-- disable uikit icon
+  <script src="src/uikit/uikit.min.js"></script>
+  <script src="src/uikit/uikit-icons.min.js"></script> -->
+
 </head>
+<!--
+ ---
+ BODY
+ ---
+ -->
 <body onload="getNews();">
-<!-- <script src="src.vue.min.js"></script> -->
-<script src="src/vue.min.js"></script>
 <div id="app">
   <div style="height: 100vh;" id="container">
     <div id="web" class="ui grid" style="margin: 0 auto;">
@@ -20,16 +39,15 @@
               action="https://www.google.com/search">
 
           <input type="text" class="uk-input" id="search-field" name="q"
-                 style="height: 50px; width: calc(100% - 200px)"
                  placeholder="Search" autocomplete="off"
                  oninput="getGoogleSugg(this)" onclick="clearSelete()"
                  v-model="search" autofocus spellcheck="false"><button
-                class="uk-button uk-button-primary"
-                style="height: 50px; width: 200px;">Search Google</button>
+                id="search-btn"
+                class="uk-button uk-button-primary">Search</button>
 
         </form>
         <!-- keyword prediction -->
-        <div class="ten wide column row centered" v-if="seen" style="margin-top: 32px;">
+        <div class="ten wide column row centered" v-if="seen" style="margin-top: 24px;">
           <div class="ui segments">
             <sugg-str
                     v-for="item in suggs"
@@ -40,14 +58,62 @@
           </div>
         </div>
         <!-- ----- -->
-        <div id="fav" class="ten wide column centered" v-if="!seen">
-          <!-- template -->
-          <template id="fav-item"><a class="item" href="">
-              <i class="mail icon"></i><p style="margin-top: 0"></p>
-            </a></template>
-          <!-- ----- -->
-          <div id="fav-menu" class="ui labeled icon menu"
-               style="width: 100%; display: block; text-align: left"></div>
+        <div id="fav" class="uk-card uk-card-default uk-card-body" v-if="!seen">
+          <!-- template
+          <template id="fav-item"><li class="" href="">
+              <i class="fa"></i><label></label>
+            </li></template>
+          -->
+          <ul id="fav-menu" class="uk-nav uk-nav-center uk-nav-parent-icon"><li>
+              <a href="https://www.youtube.com/?gl=TW&hl=zh-TW">
+                <i class="fa fa-youtube-play"></i><label>Youtube</label>
+              </a>
+            </li><li>
+              <a href="https://translate.google.com.tw/?hl=zh-TW">
+                <i class="fa fa-commenting-o"></i><label>Translate</label>
+              </a>
+            </li><li>
+              <a href="https://store.steampowered.com/">
+                <i class="fa fa-steam"></i><label>Steam</label>
+              </a>
+            </li><li>
+              <a href="https://twitch.tv/">
+                <i class="fa fa-twitch"></i><label>Twitch</label>
+              </a>
+            </li><li>
+              <a href="https://tw.yahoo.com/">
+                <i class="fa fa-yahoo"></i><label>Yahoo</label>
+              </a>
+            </li><li>
+              <a href="https://www.google.com/intl/zh-TW/gmail/about/#">
+                <i class="fa fa-envelope"></i><label>Gmail</label>
+              </a>
+            </li><li>
+              <a href="https://www.google.com/intl/zh-TW_ALL/drive/">
+                <i class="fa fa-cloud-upload"></i>Drive
+              </a>
+            </li><li>
+              <a href="https://www.instagram.com/">
+                <i class="fa fa-instagram"></i>Instagram
+              </a>
+            </li><li>
+              <a href="https://www.twitter.com/">
+                <i class="fa fa-twitter"></i>Twitter
+              </a>
+            </li><li>
+              <a href="https://www.facebook.com/">
+                <i class="fa fa-facebook"></i>Facebook
+              </a>
+            </li><li>
+              <a href="https://www.github.com/">
+                <i class="fa fa-github-alt"></i>Github
+              </a>
+            </li><li>
+              <a href="https://www.soundcloud.com/">
+                <i class="fa fa-soundcloud"></i>SoundCloud
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -73,21 +139,23 @@
   -->
 </div>
 <script>
-    // let app = new Vue({
-    //     el: '#app',
-    //     data: {
-    //         search: '',
-    //         seen: false,
-    //         select: -1,
-    //         suggLen: 0,
-    //         suggs: [],
-    //         newsData: []
-    //     }
-    // });
+    let app = new Vue({
+        el: '#app',
+        data: {
+            search: '',
+            seen: false,
+            select: -1,
+            suggLen: 0,
+            suggs: [],
+            newsData: []
+        }
+    });
 </script>
-<script src="fav.js"></script>
+<!-- <script src="fav.js"></script> -->
 <script src="./search.js"></script>
-<!-- disabled -->
-<!-- <script src="news.js"></script> -->
+<!--
+disabled
+<script src="news.js"></script>
+ -->
 </body>
 </html>

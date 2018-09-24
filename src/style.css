@@ -21,6 +21,20 @@ body{
     padding-right: 0;
 }
 
+#search-field {
+    width: calc(100% - 200px);
+    height: 60px;
+    padding-left: 20px;
+    font-size: 24px;
+    color: #444444;
+}
+
+#search-btn {
+    width: 200px;
+    height: 60px;
+    font-size: 28px;
+}
+
 .ui.segments .ui.segment {
     font-size: 20px;
 }
@@ -28,16 +42,34 @@ body{
 #fav {
     display: flex;
     margin-top: 24px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
+}
+
+#fav-menu {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+
+#fav-menu li {
+    display: inline-block;
+    min-width: calc(100% / 8 - 1px);
+    width:  calc(100% / 8);
+    padding: 10px 0;
 }
 
 #fav-menu a {
-    display: inline-block;
-    min-width: calc(100% / 8 - 1px);
-    width:  calc(100% / 8 - 1px);
-    #border-right: #999999;
-    #border-top: #999999;
+    text-align: center;
+}
+
+#fav-menu i {
+    text-align: center;
+    width:  100%;
+}
+
+#fav-menu label {
+    width: 100%;
+    font-size: 18px;
 }
 
 #fav-menu .item::before {
