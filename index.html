@@ -3,26 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./src/semantic.min.css">
+  <link rel="stylesheet" href="./src/uikit.min.css">
   <link rel="stylesheet" href="./src/style.css">
   <title>WEB-INDEX</title>
 </head>
-<body onload="getNews()">
+<body onload="getNews();">
 <!-- <script src="src.vue.min.js"></script> -->
 <script src="src/vue.min.js"></script>
 <div id="app">
   <div style="height: 100vh;" id="container">
     <div id="web" class="ui grid" style="margin: 0 auto;">
-      <div id="search" class="ten wide column centered" style="padding-left: 0; padding-right: 0">
+      <div id="search" class="column centered">
+        <!-- search form -->
         <form id="search-form"
               method="GET"
-              action="https://www.google.com/search"
-              class="ui input fluid action">
-          <input type="text" id="search-field" name="q"
+              action="https://www.google.com/search">
+
+          <input type="text" class="uk-input" id="search-field" name="q"
+                 style="height: 50px; width: calc(100% - 200px)"
                  placeholder="Search" autocomplete="off"
                  oninput="getGoogleSugg(this)" onclick="clearSelete()"
-                 v-model="search" autofocus spellcheck="false">
-          <button class="ui button">Search Google</button>
+                 v-model="search" autofocus spellcheck="false"><button
+                class="uk-button uk-button-primary"
+                style="height: 50px; width: 200px;">Search Google</button>
+
         </form>
+        <!-- keyword prediction -->
         <div class="ten wide column row centered" v-if="seen" style="margin-top: 32px;">
           <div class="ui segments">
             <sugg-str
@@ -32,35 +38,17 @@
                     v-bind:key="item.id">
             </sugg-str>
           </div>
-      </div>
-      <div id="fav" class="ten wide column centered" v-if="!seen">
-        <div id="fav-menu" class="ui labeled icon menu"
-             style="width: 100%; display: block; text-align: left">
-          <a class="item" href="https://www.youtube.com/?gl=TW&hl=zh-TW">
-            <i class="youtube icon"></i>Youtube
-          </a><a class="item" href="https://translate.google.com.tw/?hl=zh-TW">
-          <i class="translate icon"></i>Translate
-        </a><a class="item" href="https://store.steampowered.com/">
-          <i class="steam icon"></i>Steam
-        </a><a class="item" href="https://twitch.tv/">
-          <i class="twitch icon"></i>Twitch
-        </a><a class="item" href="https://tw.yahoo.com/">
-          <i class="yahoo icon"></i>Yahoo
-        </a><a class="item" href="https://www.google.com/intl/zh-TW/gmail/about/#">
-          <i class="mail icon"></i>Gmail
-        </a><a class="item" href="https://www.google.com/intl/zh-TW_ALL/drive/">
-          <i class="google drive icon"></i>Drive
-        </a><a class="item" href="https://www.instagram.com/">
-          <i class="camera retro icon"></i>Instagram
-        </a><a class="item" href="https://www.twitter.com/">
-          <i class="twitter icon"></i>Twitter
-        </a><a class="item" href="https://www.facebook.com/">
-          <i class="facebook icon"></i>Facebook
-        </a><a class="item" href="https://www.github.com/">
-          <i class="github icon"></i>Github
-        </a>
         </div>
-      </div>
+        <!-- ----- -->
+        <div id="fav" class="ten wide column centered" v-if="!seen">
+          <!-- template -->
+          <template id="fav-item"><a class="item" href="">
+              <i class="mail icon"></i><p style="margin-top: 0"></p>
+            </a></template>
+          <!-- ----- -->
+          <div id="fav-menu" class="ui labeled icon menu"
+               style="width: 100%; display: block; text-align: left"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -85,18 +73,19 @@
   -->
 </div>
 <script>
-    let app = new Vue({
-        el: '#app',
-        data: {
-            search: '',
-            seen: false,
-            select: -1,
-            suggLen: 0,
-            suggs: [],
-            newsData: []
-        }
-    });
+    // let app = new Vue({
+    //     el: '#app',
+    //     data: {
+    //         search: '',
+    //         seen: false,
+    //         select: -1,
+    //         suggLen: 0,
+    //         suggs: [],
+    //         newsData: []
+    //     }
+    // });
 </script>
+<script src="fav.js"></script>
 <script src="./search.js"></script>
 <!-- disabled -->
 <!-- <script src="news.js"></script> -->

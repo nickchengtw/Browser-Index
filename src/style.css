@@ -15,6 +15,12 @@ body{
     font-size: 20px;
 }
 
+#search {
+    width: 80%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .ui.segments .ui.segment {
     font-size: 20px;
 }
@@ -29,7 +35,7 @@ body{
 #fav-menu a {
     display: inline-block;
     min-width: calc(100% / 8 - 1px);
-    width:  calc(100% / 8);
+    width:  calc(100% / 8 - 1px);
     #border-right: #999999;
     #border-top: #999999;
 }
