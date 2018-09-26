@@ -8,9 +8,9 @@ let searchGoogle = function (el) {
 //vue component for prediction
 Vue.component('sugg-str', {
     props: ['sugg'],
-    template: '<div class="ui segment" ' +
-    'style="text-align: left;" onclick="searchGoogle(this)"' +
-    '>{{sugg}}</div>'
+    template: '<li ' +
+    'onclick="searchGoogle(this)"' +
+    '>{{sugg}}</li>'
 });
 
 document.onkeydown = function (event) {

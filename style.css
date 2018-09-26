@@ -6,7 +6,7 @@ body{
 #container {
     width: 100%;
     overflow-y: hidden;
-    background: url("network.jpg") fixed;
+    background: url("src/network.jpg") fixed;
     background-size: auto 100%;
 }
 
@@ -76,8 +76,20 @@ body{
     content: none;
 }
 
+.uk-list.uk-list-divider li {
+    margin-top: 0;
+    padding: 20px;
+    background-color: #FFFFFF;
+    font-size: 20px;
+}
+
+.uk-list.uk-list-divider li.select {
+    background-color: #CCCCCC;
+    animation: keywordSelected 0.4s;
+}
+
 #news {
-    background: url("city.jpg") fixed;
+    background: url("src/city.jpg") fixed;
     background-size: auto 100%;
     width: auto;
     height: auto;

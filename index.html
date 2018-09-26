@@ -10,8 +10,9 @@
 
   <link rel="stylesheet" href="src/semantic/semantic.min.css">
   <link rel="stylesheet" href="src/uikit/uikit.min.css">
-  <link rel="stylesheet" href="./src/style.css">
   <link rel="stylesheet" href="src/fa/css/font-awesome.min.css">
+  <link rel="stylesheet" href="keyframe.css">
+  <link rel="stylesheet" href="style.css">
 
   <title>WEB-INDEX</title>
 
@@ -48,14 +49,14 @@
         </form>
         <!-- keyword prediction -->
         <div class="ten wide column row centered" v-if="seen" style="margin-top: 24px;">
-          <div class="ui segments">
+          <ul class="uk-list uk-list-divider">
             <sugg-str
                     v-for="item in suggs"
                     v-bind:sugg="item.name"
-                    v-bind:class="{secondary: (select === item.id)}"
+                    v-bind:class="{select: (select === item.id)}"
                     v-bind:key="item.id">
             </sugg-str>
-          </div>
+          </ul>
         </div>
         <!-- ----- -->
         <div id="fav" class="uk-card uk-card-default uk-card-body" v-if="!seen">
