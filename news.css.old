@@ -1,0 +1,28 @@
+
+#news {
+    background: url("src/images/city.jpg") fixed;
+    background-size: auto 100%;
+    width: auto;
+    height: auto;
+    min-height: 100vh;
+}
+
+#news-box {
+    width: 900px;
+    margin: 0 auto;
+    padding: 36px 0;
+    text-align: center;
+}
+
+#news-box .ui.card {
+    display: inline-flex;
+    margin: 10px 10px;
+    width: calc(25% - 23px);
+    min-width: 250px;
+}
+
+#news-box .ui.card .content {
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}

@@ -1,16 +1,16 @@
 
 //send keyword to google
-let searchGoogle = function (el) {
+let search = function (el) {
     document.getElementById('search-field').value = el.innerHTML;
     document.getElementById('search-form').submit();
 };
 
 //vue component for prediction
-Vue.component('sugg-str', {
-    props: ['sugg'],
+Vue.component('keyword', {
+    props: ['text'],
     template: '<li ' +
-    'onclick="searchGoogle(this)"' +
-    '>{{sugg}}</li>'
+    'onclick="search(this)"' +
+    '>{{text}}</li>'
 });
 
 document.onkeydown = function (event) {
@@ -31,7 +31,7 @@ document.onkeydown = function (event) {
     }
 };
 
-function clearSelete() {
+function clearSelect() {
     app.select = -1
 }
 
@@ -54,8 +54,8 @@ function autoComplete(data) {
     app.suggs = suggData;
 }
 
-//get auto-complete from google
-function getGoogleSugg(el) {
+//get keyword-prediction from google
+function getGoogleKwPred(el) {
     let script = document.createElement('script');
 
     //auto-complete server address
