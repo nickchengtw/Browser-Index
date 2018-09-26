@@ -1,4 +1,4 @@
 
 function ifTooSmall() {
-    (window.innerWidth < 900 ? app.tooSmall = true : app.tooSmall = false)
+    (window.innerWidth < 800 ? app.tooSmall = true : app.tooSmall = false)
 }

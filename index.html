@@ -25,11 +25,12 @@
  BODY
  ---
  -->
-<body onresize="ifTooSmall()">
+<body onload="ifTooSmall()" onresize="ifTooSmall()">
 <div id="app">
-  <div class="uk-alert-warning" v-if="tooSmall">
+  <!-- alert -->
+  <div class="uk-alert-warning" v-if="tooSmall" uk-alert>
     <a class="uk-alert-close"></a>
-    <p>Display too small, recommend more than 900px</p>
+    <p>Display too small, recommend more than 800px</p>
   </div>
   <div id="web">
     <!-- search form -->
