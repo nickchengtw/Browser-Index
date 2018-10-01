@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="keyframe.css">
   <link rel="stylesheet" href="style.css">
 
-  <title>WEB-INDEX</title>
+  <title>WEB-INDEX-BETA</title>
 
   <script src="src/uikit/uikit.min.js"></script>
   <script src="src/vue/vue.min.js"></script>
@@ -36,7 +36,7 @@
     <!-- search form -->
     <form id="search-form" method="GET" action="https://www.google.com/search">
       <!-- input -->
-      <input type="text" class="uk-input" id="search-field" name="q"
+      <input type="text" class="uk-input" id="search-text" name="q"
              placeholder="Search" autocomplete="off"
              oninput="getGoogleKwPred(this)" onclick="clearSelect()"
              v-model="search" autofocus spellcheck="false"><button
@@ -83,27 +83,27 @@
         </a>
       </li><li>
         <a href="https://www.google.com/intl/zh-TW_ALL/drive/">
-          <i class="fa fa-cloud-upload"></i>Drive
+          <i class="fa fa-cloud-upload"></i><label>Drive</label>
         </a>
       </li><li>
         <a href="https://www.instagram.com/">
-          <i class="fa fa-instagram"></i>Instagram
+          <i class="fa fa-instagram"></i><label>Instagram</label>
         </a>
       </li><li>
         <a href="https://www.twitter.com/">
-          <i class="fa fa-twitter"></i>Twitter
+          <i class="fa fa-twitter"></i><label>Twitter</label>
         </a>
       </li><li>
         <a href="https://www.facebook.com/">
-          <i class="fa fa-facebook"></i>Facebook
+          <i class="fa fa-facebook"></i><label>Facebook</label>
         </a>
       </li><li>
         <a href="https://www.github.com/">
-          <i class="fa fa-github-alt"></i>Github
+          <i class="fa fa-github-alt"></i><label>Github</label>
         </a>
       </li><li>
         <a href="https://www.soundcloud.com/">
-          <i class="fa fa-soundcloud"></i>SoundCloud
+          <i class="fa fa-soundcloud"></i><label>SoundCloud</label>
         </a>
       </li></ul>
     </div>
@@ -129,6 +129,7 @@
   </div>
   -->
 </div>
+<div id="background"></div>
 <script>
     let app = new Vue({
         el: '#app',
