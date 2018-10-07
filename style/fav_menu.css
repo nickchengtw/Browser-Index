@@ -1,0 +1,53 @@
+
+#fav {
+    display: flex;
+    margin-top: 24px;
+    padding: 0;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+#fav-menu {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+
+#fav-menu li {
+    display: inline-block;
+    min-width: 120px;
+    width:  calc(100% / 6);
+    padding: 10px 0;
+}
+
+#fav-menu li:hover {
+
+}
+
+#fav-menu a {
+    text-align: center;
+    color: #151515;
+    transition-duration: 0.3s;
+}
+
+#fav-menu a:hover {
+    color: #1e87f0;
+}
+
+#fav-menu i {
+    text-align: center;
+    width:  100%;
+}
+
+#fav-menu label {
+    width: 100%;
+    font-size: 18px;
+}
+
+#fav-menu a.white-text i {
+    color: #FFFFFF;
+}
+
+#fav-menu a.white-text label {
+    color: #FFFFFF;
+}

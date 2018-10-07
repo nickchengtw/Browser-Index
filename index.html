@@ -10,14 +10,17 @@
 
   <link rel="stylesheet" href="src/uikit/uikit.min.css">
   <link rel="stylesheet" href="src/fa/css/font-awesome.min.css">
-  <link rel="stylesheet" href="keyframe.css">
+  <link rel="stylesheet" href="style/keyframe.css">
+  <link rel="stylesheet" href="style/search.css">
+  <link rel="stylesheet" href="style/fav_menu.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style/dark.css">
 
   <title>WEB-INDEX-BETA</title>
 
   <script src="src/uikit/uikit.min.js"></script>
-  <script src="src/vue/vue.min.js"></script>
-  <!-- <script src="src/vue.js"></script> -->
+  <!--<script src="src/vue/vue.min.js"></script>-->
+  <script src="src/vue/vue.js"></script>
 
 </head>
 <!--
@@ -34,16 +37,16 @@
   </div>
   <div id="web">
     <!-- search form -->
-    <form id="search-form" method="GET" action="https://www.google.com/search">
-      <!-- input -->
-      <input type="text" class="uk-input" id="search-text" name="q"
-             placeholder="Search" autocomplete="off"
-             oninput="getGoogleKwPred(this)" onclick="clearSelect()"
-             v-model="search" autofocus spellcheck="false"><button
-            id="search-btn"
-            class="uk-button uk-button-primary">Search</button>
-      <!-- ----- -->
-    </form>
+      <form id="search-form" method="GET" action="https://www.google.com/search">
+          <!-- input -->
+          <input type="text" class="uk-input" id="search-text" name="q"
+                 placeholder="Search" autocomplete="off"
+                 oninput="getGoogleKwPred(this)" onclick="clearSelect()"
+                 v-model="search" autofocus spellcheck="false"><button
+              id="search-btn"
+              class="uk-button uk-button-primary"><i class="fa fa-arrow-right"></i></button>
+          <!-- ----- -->
+      </form>
     <!-- keyword prediction -->
     <div v-if="seen" style="margin-top: 24px;">
       <ul id="keyword" class="uk-list uk-list-divider">
@@ -57,57 +60,30 @@
     </div>
     <!-- fav-bar -->
     <div id="fav" class="uk-card uk-card-default uk-card-body" v-if="!seen">
-      <ul id="fav-menu" class="uk-nav uk-nav-center uk-nav-parent-icon"><li>
-        <a href="https://www.youtube.com/?gl=TW&hl=zh-TW">
-          <i class="fa fa-youtube-play"></i><label>Youtube</label>
-        </a>
-      </li><li>
-        <a href="https://translate.google.com.tw/?hl=zh-TW">
-          <i class="fa fa-commenting-o"></i><label>Translate</label>
-        </a>
-      </li><li>
-        <a href="https://store.steampowered.com/">
-          <i class="fa fa-steam"></i><label>Steam</label>
-        </a>
-      </li><li>
-        <a href="https://twitch.tv/">
-          <i class="fa fa-twitch"></i><label>Twitch</label>
-        </a>
-      </li><li>
-        <a href="https://tw.yahoo.com/">
-          <i class="fa fa-yahoo"></i><label>Yahoo</label>
-        </a>
-      </li><li>
-        <a href="https://www.google.com/intl/zh-TW/gmail/about/#">
-          <i class="fa fa-envelope"></i><label>Gmail</label>
-        </a>
-      </li><li>
-        <a href="https://www.google.com/intl/zh-TW_ALL/drive/">
-          <i class="fa fa-cloud-upload"></i><label>Drive</label>
-        </a>
-      </li><li>
-        <a href="https://www.instagram.com/">
-          <i class="fa fa-instagram"></i><label>Instagram</label>
-        </a>
-      </li><li>
-        <a href="https://www.twitter.com/">
-          <i class="fa fa-twitter"></i><label>Twitter</label>
-        </a>
-      </li><li>
-        <a href="https://www.facebook.com/">
-          <i class="fa fa-facebook"></i><label>Facebook</label>
-        </a>
-      </li><li>
-        <a href="https://www.github.com/">
-          <i class="fa fa-github-alt"></i><label>Github</label>
-        </a>
-      </li><li>
-        <a href="https://www.soundcloud.com/">
-          <i class="fa fa-soundcloud"></i><label>SoundCloud</label>
-        </a>
-      </li></ul>
+      <ul id="fav-menu" class="uk-nav uk-nav-center uk-nav-parent-icon">
+        <fav-site
+                v-for="(item, index) in fav"
+                v-bind:text="item.name"
+                v-bind:url="item.url"
+                v-bind:icon="item.icon"
+                v-bind:key="index"
+        ></fav-site>
+      </ul>
     </div>
     <!-- ----- -->
+  </div>
+  <div id="setting">
+    <i class="fa fa-gear fa-lg" v-bind:class="{'white-text': darkTheme}"></i>
+    <div uk-dropdown>
+      <ul class="uk-nav uk-dropdown-nav">
+        <li><label><input
+                class="uk-checkbox"
+                type="checkbox"
+                onchange="switchTheme(this)"
+                :checked="darkTheme"> dark theme</label>
+        </li>
+      </ul>
+    </div>
   </div>
   <!-- disabled
   <div style="text-align: center; padding: 20px 10px; background-color: #DDDDDD">
@@ -128,8 +104,8 @@
     </div>
   </div>
   -->
+  <div id="background"></div>
 </div>
-<div id="background"></div>
 <script>
     let app = new Vue({
         el: '#app',
@@ -140,16 +116,20 @@
             select: -1,
             suggLen: 0,
             suggs: [],
-            newsData: []
+            newsData: [],
+            fav: [],
+            darkTheme: true
         }
     });
 </script>
-<script src="window.js"></script>
-<!-- <script src="fav.js"></script> -->
-<script src="./search.js"></script>
+<script src="js/init.js"></script>
+<script src="js/window.js"></script>
+<script src="js/fav.js"></script>
+<script src="js/search.js"></script>
 <!--
 disabled
 <script src="news.js"></script>
  -->
+<script src="js/theme.js"></script>
 </body>
 </html>
